@@ -1,0 +1,41 @@
+version: '3'
+services:
+    nginx:
+        build:
+            context: ./docker/nginx
+        volumes:
+            - .:/app
+        depends_on:
+            - php-fpm
+        ports:
+            - "8080:80"
+    php-fpm:
+        build:
+            context: ./docker/php
+            dockerfile: php-fpm.docker
+        environment:
+            PHP_IDE_CONFIG: serverName=app
+        volumes:
+            - .:/app
+        depends_on:
+            - db
+    php-cli:
+        build:
+            context: ./docker/php
+            dockerfile: php-cli.docker
+        volumes:
+            - .:/app
+        depends_on:
+            - db
+    db:
+        image: postgres:14.2-alpine
+        volumes:
+            - db:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_USER=db
+            - POSTGRES_PASSWORD=db
+            - POSTGRES_DB=db
+        ports:
+            - "5432:5432"
+volumes:
+    db:
