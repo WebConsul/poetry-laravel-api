@@ -71,13 +71,13 @@ make backend-ide-helper
 Запуск миграций:
 
 ```
-docker-compose run --rm php-cli php artisan migrate
+make backend-migrations
 ```
 
 Запуск [Database Seeders](https://laravel.com/docs/9.x/seeding):
 
 ```
-docker-compose run --rm php-cli php artisan migrate:fresh --seed
+make backend-seed
 ```
 
 ## Дополнительные материалы
