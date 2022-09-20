@@ -79,3 +79,7 @@ docker-compose run --rm php-cli php artisan migrate
 ```
 docker-compose run --rm php-cli php artisan migrate:fresh --seed
 ```
+
+## Дополнительные материалы
+
+[Работа с базами PostgreSQL в PHPStorm](https://github.com/poymanov/laravel-starter-kit/blob/main/docs/stage-13/README.md).
