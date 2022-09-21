@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return ['name' => env('APP_NAME')];
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user/me', [UserController::class, 'me']);
 });
