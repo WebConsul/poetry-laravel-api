@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('poets', function (Blueprint $table) {
             $table->id();
-            $table->date('birth_date');
+            $table->date('birth_date')->nullable();
             $table->date('death_date')->nullable();
             $table->string('portrait_url')->nullable();
             $table->timestamps();

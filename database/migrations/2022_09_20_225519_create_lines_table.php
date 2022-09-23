@@ -10,9 +10,9 @@ return new class extends Migration
     {
         Schema::create('lines', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('poem_id')
-                ->constrained('poems');
+            $table->foreignId('poem_id')->constrained('poems');
             $table->string('text');
+            $table->boolean('end_of_stanza')->default(false);
             $table->timestamps();
         });
     }

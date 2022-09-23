@@ -12,11 +12,15 @@ return new class extends Migration
             $table->id();
             $table->foreignId('poet_id')
                 ->constrained('poets');
-            $table->integer('translation_of');
-            $table->string('language', 5);
+            $table->unsignedBigInteger('translation_of')->nullable();
+            $table->string('language', 5)->nullable();
             $table->string('title')->nullable();
-            $table->string('created', 45);
+            $table->string('created', 45)->nullable();
             $table->timestamps();
+        });
+
+        Schema::table('poems', function (Blueprint $table) {
+            $table->foreign('translation_of')->references('id')->on('poems');
         });
     }
 
