@@ -16,7 +16,7 @@ return new class extends Migration
                 ->constrained('poems');
             $table->string('language', 5);
             $table->string('title')->nullable();
-            $table->string('created', 45);
+            $table->string('created', 45)->nullable();
             $table->timestamps();
         });
     }
