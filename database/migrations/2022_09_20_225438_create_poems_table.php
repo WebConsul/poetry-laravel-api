@@ -12,7 +12,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('poet_id')
                 ->constrained('poets');
-            $table->integer('translation_of');
+            $table->foreignId('translation_of')
+                ->constrained('poems');
             $table->string('language', 5);
             $table->string('title')->nullable();
             $table->string('created', 45);
