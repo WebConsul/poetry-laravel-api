@@ -186,7 +186,7 @@ return [
          * Package Service Providers...
          */
         App\Providers\FortifyServiceProvider::class,
-
+        L5Swagger\L5SwaggerServiceProvider::class,
         /*
          * Application Service Providers...
          */
