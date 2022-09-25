@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Poet extends Model
@@ -18,6 +19,19 @@ class Poet extends Model
         'death_date',
         'portrait_url',
     ];
+
+    /**
+     * @return BelongsToMany
+     */
+    public function collections(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Collection::class,
+            'collections_has_poets',
+            'poet_id',
+            'collection_id'
+        );
+    }
 
     /**
      * @return HasMany
