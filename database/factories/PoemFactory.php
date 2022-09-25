@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Poem;
 use App\Models\Poet;
 use Database\Factories\Helpers\FactoryHelper;
 use Illuminate\Database\Eloquent\Factories\Factory;

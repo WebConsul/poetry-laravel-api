@@ -5,11 +5,13 @@ namespace Database\Seeders;
 use App\Models\Collection;
 use App\Models\Poem;
 use Database\Factories\Helpers\FactoryHelper;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Seeders\Traits\TruncateTable;
 use Illuminate\Database\Seeder;
 
 class PoemSeeder extends Seeder
 {
+    use TruncateTable;
+
     /**
      * Run the database seeds.
      *
@@ -17,6 +19,8 @@ class PoemSeeder extends Seeder
      */
     public function run()
     {
+        $this->truncate('poems');
+
         $poems = Poem::factory()
             ->count(50)
             ->hasLine(20)
@@ -27,7 +31,7 @@ class PoemSeeder extends Seeder
         });
 
         $poemWithTranslation = Poem::factory([
-            'translation_of' => FactoryHelper::getRandomModelId(Poem::class)
+            'translation_of' => FactoryHelper::getRandomModelId(Poem::class),
         ])
             ->create();
     }

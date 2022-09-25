@@ -5,11 +5,13 @@ namespace Database\Seeders;
 use App\Models\Collection;
 use App\Models\Poet;
 use Database\Factories\Helpers\FactoryHelper;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Seeders\Traits\TruncateTable;
 use Illuminate\Database\Seeder;
 
 class PoetSeeder extends Seeder
 {
+    use TruncateTable;
+
     /**
      * Run the database seeds.
      *
@@ -17,6 +19,8 @@ class PoetSeeder extends Seeder
      */
     public function run()
     {
+        $this->truncate('poets');
+
         $poets = Poet::factory()
             ->count(20)
             ->hasPoetData(3)
