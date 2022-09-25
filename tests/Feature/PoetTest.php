@@ -3,20 +3,20 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class PoetTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
-     * A basic feature test example.
+     * Тест для получения поэтов по api.
      *
      * @return void
      */
-    public function test_example()
+    public function test_get_poets(): void
     {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+        $response = $this->getJson('/api/poets');
+        $response->assertOk();
     }
 }
