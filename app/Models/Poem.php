@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Poem extends Model
 {
@@ -31,10 +31,26 @@ class Poem extends Model
     }
 
     /**
-     * @return HasOne
+     * @return HasMany
      */
-    public function line(): HasOne
+    public function lines(): HasMany
     {
-        return $this->hasOne(Line::class);
+        return $this->hasMany(Line::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function translations(): HasMany
+    {
+        return $this->hasMany(Poem::class, 'translation_of');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function source(): BelongsTo
+    {
+        return $this->belongsTo(Poem::class, 'translation_of');
     }
 }
