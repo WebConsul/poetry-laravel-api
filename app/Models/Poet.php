@@ -2,11 +2,43 @@
 
 namespace App\Models;
 
+use Database\Factories\PoetFactory;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 
+/**
+ * App\Models\Poet
+ *
+ * @property int $id
+ * @property string|null $birth_date
+ * @property string|null $death_date
+ * @property string|null $portrait_url
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|Collection[] $collections
+ * @property-read int|null $collections_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|Poem[] $poems
+ * @property-read int|null $poems_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|PoetData[] $poetData
+ * @property-read int|null $poet_data_count
+ *
+ * @method static PoetFactory factory(...$parameters)
+ * @method static Builder|Poet newModelQuery()
+ * @method static Builder|Poet newQuery()
+ * @method static Builder|Poet query()
+ * @method static Builder|Poet whereBirthDate($value)
+ * @method static Builder|Poet whereCreatedAt($value)
+ * @method static Builder|Poet whereDeathDate($value)
+ * @method static Builder|Poet whereId($value)
+ * @method static Builder|Poet wherePortraitUrl($value)
+ * @method static Builder|Poet whereUpdatedAt($value)
+ * @mixin Eloquent
+ */
 class Poet extends Model
 {
     use HasFactory;
