@@ -2,14 +2,48 @@
 
 namespace App\Models;
 
+use Database\Factories\PoemFactory;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 
 /**
- * @mixin IdeHelperPoem
+ * App\Models\Poem
+ *
+ * @property int $id
+ * @property int $poet_id
+ * @property int|null $translation_of
+ * @property string|null $language
+ * @property string|null $title
+ * @property string|null $created
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Collection[] $collections
+ * @property-read int|null $collections_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Line[] $lines
+ * @property-read int|null $lines_count
+ * @property-read \App\Models\Poet $poet
+ * @property-read Poem|null $source
+ * @property-read \Illuminate\Database\Eloquent\Collection|Poem[] $translations
+ * @property-read int|null $translations_count
+ * @method static \Database\Factories\PoemFactory factory(...$parameters)
+ * @method static Builder|Poem newModelQuery()
+ * @method static Builder|Poem newQuery()
+ * @method static Builder|Poem query()
+ * @method static Builder|Poem whereCreated($value)
+ * @method static Builder|Poem whereCreatedAt($value)
+ * @method static Builder|Poem whereId($value)
+ * @method static Builder|Poem whereLanguage($value)
+ * @method static Builder|Poem wherePoetId($value)
+ * @method static Builder|Poem whereTitle($value)
+ * @method static Builder|Poem whereTranslationOf($value)
+ * @method static Builder|Poem whereUpdatedAt($value)
+ * @mixin Eloquent
  */
 class Poem extends Model
 {
