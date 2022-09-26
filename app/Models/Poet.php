@@ -20,13 +20,14 @@ use Illuminate\Support\Carbon;
  * @property string|null $portrait_url
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Collection[] $collections
+ * @property-read \Illuminate\Database\Eloquent\Collection|Collection[] $collections
  * @property-read int|null $collections_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Poem[] $poems
+ * @property-read \Illuminate\Database\Eloquent\Collection|Poem[] $poems
  * @property-read int|null $poems_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\PoetData[] $poetData
+ * @property-read \Illuminate\Database\Eloquent\Collection|PoetData[] $poetData
  * @property-read int|null $poet_data_count
- * @method static \Database\Factories\PoetFactory factory(...$parameters)
+ *
+ * @method static PoetFactory factory(...$parameters)
  * @method static Builder|Poet newModelQuery()
  * @method static Builder|Poet newQuery()
  * @method static Builder|Poet query()

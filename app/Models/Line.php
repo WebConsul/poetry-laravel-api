@@ -19,8 +19,9 @@ use Illuminate\Support\Carbon;
  * @property bool $end_of_stanza
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read \App\Models\Poem $poem
- * @method static \Database\Factories\LineFactory factory(...$parameters)
+ * @property-read Poem $poem
+ *
+ * @method static LineFactory factory(...$parameters)
  * @method static Builder|Line newModelQuery()
  * @method static Builder|Line newQuery()
  * @method static Builder|Line query()

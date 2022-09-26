@@ -23,15 +23,16 @@ use Illuminate\Support\Carbon;
  * @property string|null $created
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Collection[] $collections
+ * @property-read \Illuminate\Database\Eloquent\Collection|Collection[] $collections
  * @property-read int|null $collections_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Line[] $lines
+ * @property-read \Illuminate\Database\Eloquent\Collection|Line[] $lines
  * @property-read int|null $lines_count
- * @property-read \App\Models\Poet $poet
+ * @property-read Poet $poet
  * @property-read Poem|null $source
  * @property-read \Illuminate\Database\Eloquent\Collection|Poem[] $translations
  * @property-read int|null $translations_count
- * @method static \Database\Factories\PoemFactory factory(...$parameters)
+ *
+ * @method static PoemFactory factory(...$parameters)
  * @method static Builder|Poem newModelQuery()
  * @method static Builder|Poem newQuery()
  * @method static Builder|Poem query()

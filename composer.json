@@ -36,7 +36,7 @@
     "scripts": {
         "test": "vendor/bin/phpunit",
         "ide-helper-generate": "php artisan ide-helper:generate",
-        "ide-helper-models": "php artisan ide-helper:models -W -R",
+        "ide-helper-models": "php artisan ide-helper:models -W",
         "ide-helper-meta": "php artisan ide-helper:meta",
         "pint": "vendor/bin/pint --test",
         "pint-fix": "vendor/bin/pint",
