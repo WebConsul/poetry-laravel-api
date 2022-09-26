@@ -23,7 +23,7 @@ class PoemSeeder extends Seeder
 
         $poems = Poem::factory()
             ->count(50)
-            ->hasLine(20)
+            ->hasLines(20)
             ->create();
 
         $poems->each(function (Poem $poem) {
