@@ -31,7 +31,7 @@ class PoemFactory extends Factory
 
         return [
             'language' => $this->faker->languageCode(),
-            'title' => $this->faker->title(),
+            'title' => $this->faker->boolean(50) ? null : $this->faker->sentence(3),
             'created' => $this->faker->date(Arr::random($this->dateFormats)),
             'translation_of' => null,
             'poet_id' => $poetId,
