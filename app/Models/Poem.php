@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Poem extends Model
@@ -21,6 +22,19 @@ class Poem extends Model
         'translation_of',
         'poet_id',
     ];
+
+    /**
+     * @return BelongsToMany
+     */
+    public function collections(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Collection::class,
+            'collections_has_poems',
+            'poem_id',
+            'collection_id'
+        );
+    }
 
     /**
      * @return BelongsTo

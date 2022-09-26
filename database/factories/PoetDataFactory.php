@@ -3,10 +3,11 @@
 namespace Database\Factories;
 
 use App\Models\Poet;
+use App\Models\PoetData;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PoetData>
+ * @extends Factory<PoetData>
  */
 class PoetDataFactory extends Factory
 {
@@ -15,10 +16,10 @@ class PoetDataFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'language' => $this->faker->languageCode(),
+            'language' => $this->faker->randomElement(['de', 'en', 'es', 'fr', 'it', 'pt', 'ru']),
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
             'description' => $this->faker->text(100),

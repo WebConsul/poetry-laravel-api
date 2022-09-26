@@ -16,6 +16,11 @@ class PoetData extends Model
     protected $table = 'poets_data';
 
     /**
+     * @var bool
+     */
+    public $timestamps = false;
+
+    /**
      * @var array
      */
     protected $fillable = [
