@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Poem extends Model
 {
@@ -32,11 +31,11 @@ class Poem extends Model
     }
 
     /**
-     * @return HasOne
+     * @return HasMany
      */
-    public function line(): HasOne
+    public function lines(): HasMany
     {
-        return $this->hasOne(Line::class);
+        return $this->hasMany(Line::class);
     }
 
     /**
