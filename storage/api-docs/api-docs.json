@@ -23,6 +23,24 @@
                 }
             }
         },
+        "/api/poets": {
+            "get": {
+                "tags": [
+                    "poets"
+                ],
+                "summary": "Get all poets",
+                "description": "Getting all poets with pagination.",
+                "operationId": "getPoets",
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
         "/user": {
             "post": {
                 "tags": [
