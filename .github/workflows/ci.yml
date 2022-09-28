@@ -15,6 +15,8 @@ jobs:
           POSTGRES_USER: db
           POSTGRES_PASSWORD: db
           POSTGRES_DB: db-test
+        ports:
+          - 5432:5432
 
     steps:
       - name: Checkout code
@@ -38,7 +40,7 @@ jobs:
 
       - name: Run PHPUnit
         env:
-          DB_HOST: postgres
+          DB_HOST: localhost
         run: ./vendor/bin/phpunit
   lint:
     runs-on: ubuntu-latest
