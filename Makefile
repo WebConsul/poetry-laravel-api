@@ -35,6 +35,7 @@ backend-init: backend-permissions \
 	backend-composer-install \
 	backend-copy-env \
 	backend-generate-key \
+	backend-db-create-multiple-databases \
 	wait-db \
 	backend-migrations \
 	backend-create-storage
@@ -59,6 +60,9 @@ backend-seed:
 
 backend-generate-key:
 	docker-compose run --rm php-cli php artisan key:generate
+
+backend-db-create-multiple-databases:
+	docker-compose exec db sh /docker-entrypoint-initdb.d/create-multiple-databases.sh
 
 backend-pint:
 	docker-compose run --rm php-cli composer pint

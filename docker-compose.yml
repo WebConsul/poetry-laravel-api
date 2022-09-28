@@ -31,10 +31,12 @@ services:
         image: postgres:14.2-alpine
         volumes:
             - db:/var/lib/postgresql/data
+            - ./docker/postgres/entrypoint/create-multiple-databases.sh:/docker-entrypoint-initdb.d/create-multiple-databases.sh
         environment:
             - POSTGRES_USER=db
             - POSTGRES_PASSWORD=db
             - POSTGRES_DB=db
+            - POSTGRES_MULTIPLE_DATABASES="db-test"
         ports:
             - "5432:5432"
 volumes:
