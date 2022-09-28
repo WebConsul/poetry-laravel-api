@@ -34,12 +34,12 @@ class PoetTest extends TestCase
                                 'first_name',
                                 'last_name',
                                 'description',
-                            ]
-                        ]
-                    ]
-                ]
+                            ],
+                        ],
+                    ],
+                ],
             ])
-            ->assertJson(fn(AssertableJson $json) => $json
+            ->assertJson(fn (AssertableJson $json) => $json
                 ->whereAllType([
                     'poets' => 'array',
 
