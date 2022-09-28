@@ -55,8 +55,8 @@ jobs:
           php-version: 8.1
           coverage: none
 
-      - name: Install Laravel Pint
-        run: composer require laravel/pint --dev --prefer-dist --no-interaction
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction
 
       - name: Run Laravel Pint
-        run: vendor/bin/pint --test
+        run: composer pint
