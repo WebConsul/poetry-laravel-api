@@ -29,7 +29,7 @@ class PoetTest extends TestCase
                     '*' => [
                         'url',
                         'label',
-                        'active'
+                        'active',
                     ],
                 ],
                 'next_page_url',
@@ -57,7 +57,7 @@ class PoetTest extends TestCase
                     ],
                 ],
             ])
-            ->assertJson(fn(AssertableJson $json) => $json
+            ->assertJson(fn (AssertableJson $json) => $json
                 ->whereAllType([
                     'current_page' => 'integer',
                     'first_page_url' => 'string',
