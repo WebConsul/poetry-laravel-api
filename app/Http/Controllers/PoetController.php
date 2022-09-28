@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Poet;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use OpenApi\Annotations as OA;
 
 /**
  * @OA\Get(
@@ -16,19 +18,23 @@ use Illuminate\Http\JsonResponse;
  *         response=200,
  *         description="successful operation",
  *     ),
- *     @OA\RequestBody(
- *         required=true,
+ *     @OA\Parameter(
+ *         name="per_page",
+ *         in="query",
+ *         required=false,
+ *         @OA\Schema(type="integer")
  *     )
  * )
  */
 class PoetController extends Controller
 {
-    public function get_poets(): JsonResponse
+    public function get_poets(Request $request): JsonResponse
     {
-        $poets = Poet::with('poetData')
-            ->paginate(1)
-            ->makeHidden(['created_at', 'updated_at']);
+        $perPage = $request->input('per_page') ?? 20;
 
-        return response()->json(['poets' => $poets]);
+        $poets = Poet::with('poetData')
+            ->paginate($perPage);
+
+        return response()->json($poets);
     }
 }

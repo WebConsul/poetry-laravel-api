@@ -10,7 +10,7 @@ class PoetTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_get_poets(): void
+    public function test_get_data(): void
     {
         $this->seed();
 
@@ -20,7 +20,25 @@ class PoetTest extends TestCase
             ->assertHeader('content-type', 'application/json')
             ->assertStatus(200)
             ->assertJsonStructure([
-                'poets' => [
+                'current_page',
+                'first_page_url',
+                'from',
+                'last_page',
+                'last_page_url',
+                'links' => [
+                    '*' => [
+                        'url',
+                        'label',
+                        'active'
+                    ],
+                ],
+                'next_page_url',
+                'path',
+                'per_page',
+                'prev_page_url',
+                'to',
+                'total',
+                'data' => [
                     '*' => [
                         'id',
                         'birth_date',
@@ -39,23 +57,41 @@ class PoetTest extends TestCase
                     ],
                 ],
             ])
-            ->assertJson(fn (AssertableJson $json) => $json
+            ->assertJson(fn(AssertableJson $json) => $json
                 ->whereAllType([
-                    'poets' => 'array',
+                    'current_page' => 'integer',
+                    'first_page_url' => 'string',
+                    'from' => 'integer',
+                    'last_page' => 'integer',
+                    'last_page_url' => 'string',
+                    'links' => 'array',
 
-                    'poets.0.id' => 'integer',
-                    'poets.0.birth_date' => 'string',
-                    'poets.0.death_date' => 'string',
-                    'poets.0.portrait_url' => 'string',
+                    'links.0.url' => 'string|null',
+                    'links.0.label' => 'string|null',
+                    'links.0.active' => 'boolean|null',
 
-                    'poets.0.poet_data' => 'array',
+                    'next_page_url' => 'string|null',
+                    'path' => 'string',
+                    'per_page' => 'integer',
+                    'prev_page_url' => 'string|null',
+                    'to' => 'integer',
+                    'total' => 'integer',
 
-                    'poets.0.poet_data.0.id' => 'integer',
-                    'poets.0.poet_data.0.poet_id' => 'integer',
-                    'poets.0.poet_data.0.language' => 'string',
-                    'poets.0.poet_data.0.first_name' => 'string',
-                    'poets.0.poet_data.0.last_name' => 'string',
-                    'poets.0.poet_data.0.description' => 'string',
+                    'data' => 'array',
+
+                    'data.0.id' => 'integer',
+                    'data.0.birth_date' => 'string',
+                    'data.0.death_date' => 'string',
+                    'data.0.portrait_url' => 'string',
+
+                    'data.0.poet_data' => 'array',
+
+                    'data.0.poet_data.0.id' => 'integer',
+                    'data.0.poet_data.0.poet_id' => 'integer',
+                    'data.0.poet_data.0.language' => 'string',
+                    'data.0.poet_data.0.first_name' => 'string',
+                    'data.0.poet_data.0.last_name' => 'string',
+                    'data.0.poet_data.0.description' => 'string',
                 ])
             );
     }
