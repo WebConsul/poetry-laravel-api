@@ -30,7 +30,7 @@ class PoetController extends Controller
 {
     public function get_poets(Request $request): JsonResponse
     {
-        $perPage = $request->input('per_page') ?? config('pagination.per_page');
+        $perPage = $request->input('per_page') ?? config('pagination.per_page.poets');
 
         $poets = Poet::with('poetData')
             ->paginate($perPage);
