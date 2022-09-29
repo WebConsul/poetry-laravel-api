@@ -1,5 +1,7 @@
 <?php
 
 return [
-    'per_page' => env('PER_PAGE', 20),
+    'per_page' => [
+        'poets' => env('POETS_PER_PAGE'),
+    ],
 ];
