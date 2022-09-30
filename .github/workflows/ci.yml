@@ -2,11 +2,21 @@ name: CI
 
 on:
   pull_request:
-    branches: [ master, develop ]
+    branches: [ main, develop ]
 
 jobs:
   tests:
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:11
+        env:
+          POSTGRES_USER: db
+          POSTGRES_PASSWORD: db
+          POSTGRES_DB: db-test
+        ports:
+          - 5432:5432
 
     steps:
       - name: Checkout code
@@ -16,7 +26,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.1
-          extensions: pdo, sqlite, pdo_sqlite
+          extensions: pdo, pgsql, pdo_pgsql
           coverage: none
 
       - name: Install Composer dependencies
@@ -28,21 +38,9 @@ jobs:
       - name: Generate app key
         run: php artisan key:generate
 
-      - name: Create temporary sqlite database
-        run: |
-          mkdir -p database
-          touch database/database.sqlite
-
-      - name: Run database migrations
-        env:
-          DB_CONNECTION: sqlite
-          DB_DATABASE: database/database.sqlite
-        run: php artisan migrate --force
-
       - name: Run PHPUnit
         env:
-          DB_CONNECTION: sqlite
-          DB_DATABASE: database/database.sqlite
+          DB_HOST: localhost
         run: ./vendor/bin/phpunit
   lint:
     runs-on: ubuntu-latest

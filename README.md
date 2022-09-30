@@ -44,6 +44,8 @@ php artisan ...
 make backend-test
 ```
 
+При возникновении ошибок с БД, необходимо вручную создать тестовую БД - `make backend-db-create-multiple-databases`.
+
 ## Качество кода
 
 Запуск проверки качества кода:
