@@ -8,15 +8,10 @@ use Tests\TestCase;
 
 class SwaggerTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function test_example()
+    public function test_documentation_page_returns_success_status(): void
     {
-        $response = $this->get('/');
+        $response = $this->get('api/documentation');
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 }
