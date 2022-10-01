@@ -23,4 +23,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user/me', [UserController::class, 'me']);
 });
 
-Route::get('/poets', [PoetController::class, 'get_poets']);
+Route::get('/poets', [PoetController::class, 'getPoets']);
