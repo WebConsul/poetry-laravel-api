@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Poet;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use App\Http\Requests\PoetRequest;
 use OpenApi\Annotations as OA;
 
 /**
@@ -28,7 +28,7 @@ use OpenApi\Annotations as OA;
  */
 class PoetController extends Controller
 {
-    public function get_poets(Request $request): JsonResponse
+    public function getPoets(PoetRequest $request): JsonResponse
     {
         $perPage = $request->input('per_page') ?? config('pagination.per_page.poets');
 
