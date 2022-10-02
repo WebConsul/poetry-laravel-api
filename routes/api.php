@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PoetController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,5 @@ Route::get('/', function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user/me', [UserController::class, 'me']);
 });
+
+Route::get('/poets', [PoetController::class, 'getPoets']);
