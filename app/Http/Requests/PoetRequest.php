@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use DB;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PoetRequest extends FormRequest
@@ -25,20 +26,11 @@ class PoetRequest extends FormRequest
      */
     public function rules(): array
     {
-        $max = \DB::table('poets')->count();
+        $max = DB::table('poets')->count();
 
         return [
-            'per_page' => "nullable|numeric|integer|between:1,$max",
-            'page' => "nullable|numeric|integer|between:1,$max",
-        ];
-    }
-
-    public function messages(): array
-    {
-        return [
-            'numeric' => 'The :attribute is not a number.',
-            'integer' => 'The :attribute is not an integer',
-            'between' => 'The :attribute value :input is not between :min - :max.',
+            'per_page' => "nullable|integer|between:1,$max",
+            'page' => "nullable|integer|between:1,$max",
         ];
     }
 }

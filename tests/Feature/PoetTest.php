@@ -4,95 +4,67 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
+use Tests\Feature\JsonStructure\PaginatedList;
+use Tests\Feature\JsonStructure\PaginatedPoetList;
 use Tests\TestCase;
 
 class PoetTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_get_data(): void
+    public function test_get_all_poets_with_per_page_by_default(): void
     {
         $this->seed();
 
-        $response = $this->get('/api/poets');
+        $response = $this->getJson('/api/poets');
 
         $response
             ->assertHeader('content-type', 'application/json')
             ->assertStatus(200)
-            ->assertJsonStructure([
-                'current_page',
-                'first_page_url',
-                'from',
-                'last_page',
-                'last_page_url',
-                'links' => [
-                    '*' => [
-                        'url',
-                        'label',
-                        'active',
-                    ],
-                ],
-                'next_page_url',
-                'path',
-                'per_page',
-                'prev_page_url',
-                'to',
-                'total',
-                'data' => [
-                    '*' => [
-                        'id',
-                        'birth_date',
-                        'death_date',
-                        'portrait_url',
-                        'poet_data' => [
-                            '*' => [
-                                'id',
-                                'poet_id',
-                                'language',
-                                'first_name',
-                                'last_name',
-                                'description',
-                            ],
-                        ],
-                    ],
-                ],
-            ])
+            ->assertJsonStructure(PaginatedPoetList::getStructure())
             ->assertJson(fn (AssertableJson $json) => $json
-                ->whereAllType([
-                    'current_page' => 'integer',
-                    'first_page_url' => 'string',
-                    'from' => 'integer',
-                    'last_page' => 'integer',
-                    'last_page_url' => 'string',
-                    'links' => 'array',
+                ->whereAllType(array_merge(PaginatedList::getTypes(), PaginatedPoetList::getTypes()))
+            )
+            ->assertJsonPath('per_page', intval(config('pagination.per_page.poets')));
+    }
 
-                    'links.0.url' => 'string|null',
-                    'links.0.label' => 'string|null',
-                    'links.0.active' => 'boolean|null',
+    public function test_get_all_poets_with_per_page_equals_3(): void
+    {
+        $this->seed();
 
-                    'next_page_url' => 'string|null',
-                    'path' => 'string',
-                    'per_page' => 'integer',
-                    'prev_page_url' => 'string|null',
-                    'to' => 'integer',
-                    'total' => 'integer',
+        $response = $this->getJson('/api/poets?per_page=3');
 
-                    'data' => 'array',
+        $response
+            ->assertHeader('content-type', 'application/json')
+            ->assertStatus(200)
+            ->assertJsonStructure(PaginatedPoetList::getStructure())
+            ->assertJson(fn (AssertableJson $json) => $json
+                ->whereAllType(array_merge(PaginatedList::getTypes(), PaginatedPoetList::getTypes()))
+            )
+            ->assertJsonPath('per_page', 3);
+    }
 
-                    'data.0.id' => 'integer',
-                    'data.0.birth_date' => 'string',
-                    'data.0.death_date' => 'string',
-                    'data.0.portrait_url' => 'string',
+    public function test_get_all_poets_with_too_big_per_page_value(): void
+    {
+        $this->seed();
 
-                    'data.0.poet_data' => 'array',
+        $response = $this->getJson('/api/poets?per_page=30000000');
 
-                    'data.0.poet_data.0.id' => 'integer',
-                    'data.0.poet_data.0.poet_id' => 'integer',
-                    'data.0.poet_data.0.language' => 'string',
-                    'data.0.poet_data.0.first_name' => 'string',
-                    'data.0.poet_data.0.last_name' => 'string',
-                    'data.0.poet_data.0.description' => 'string',
-                ])
+        $response
+            ->assertHeader('content-type', 'application/json')
+            ->assertStatus(422)
+            ->assertJson(fn (AssertableJson $json) => $json
+                ->has('message')
+                ->has('errors')
+                ->has('errors.per_page')
+                ->missing('data')
+                ->whereAllType(
+                    [
+                        'message' => 'string',
+                        'errors' => 'array',
+                        'errors.per_page' => 'array',
+                    ]
+                )
             );
     }
 }
