@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PoetRequest;
 use App\Models\Poet;
 use Illuminate\Http\JsonResponse;
-use App\Http\Requests\PoetRequest;
 use OpenApi\Annotations as OA;
 
 /**
