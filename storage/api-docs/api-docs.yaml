@@ -15,6 +15,23 @@ paths:
       responses:
         default:
           description: 'Welcome page'
+  /api/poets:
+    get:
+      tags:
+        - poets
+      summary: 'Get all poets'
+      description: 'Getting all poets with pagination.'
+      operationId: getPoets
+      parameters:
+        -
+          name: per_page
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        200:
+          description: 'successful operation'
   /user:
     post:
       tags:
