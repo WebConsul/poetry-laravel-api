@@ -26,6 +26,7 @@ use Illuminate\Support\Carbon;
  * @property-read int|null $poems_count
  * @property-read \Illuminate\Database\Eloquent\Collection|PoetData[] $poetData
  * @property-read int|null $poet_data_count
+ *
  * @method static PoetFactory factory(...$parameters)
  * @method static Builder|Poet newModelQuery()
  * @method static Builder|Poet newQuery()

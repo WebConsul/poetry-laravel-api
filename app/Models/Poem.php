@@ -31,6 +31,7 @@ use Illuminate\Support\Carbon;
  * @property-read Poem|null $source
  * @property-read \Illuminate\Database\Eloquent\Collection|Poem[] $translations
  * @property-read int|null $translations_count
+ *
  * @method static PoemFactory factory(...$parameters)
  * @method static Builder|Poem newModelQuery()
  * @method static Builder|Poem newQuery()
