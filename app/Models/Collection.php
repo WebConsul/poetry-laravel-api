@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Database\Factories\CollectionFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -40,7 +41,8 @@ use Illuminate\Support\Carbon;
  */
 class Collection extends Model
 {
-    use HasFactory;
+    use HasFactory,
+        Sluggable;
 
     /**
      * @var array
@@ -50,6 +52,7 @@ class Collection extends Model
         'publisher',
         'location',
         'date',
+        'slug'
     ];
 
     /**
@@ -76,5 +79,17 @@ class Collection extends Model
             'collection_id',
             'poem_id'
         );
+    }
+
+    /**
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 }
