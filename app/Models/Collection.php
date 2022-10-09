@@ -25,7 +25,6 @@ use Illuminate\Support\Carbon;
  * @property-read int|null $poems_count
  * @property-read \Illuminate\Database\Eloquent\Collection|Poet[] $poets
  * @property-read int|null $poets_count
- *
  * @method static CollectionFactory factory(...$parameters)
  * @method static Builder|Collection newModelQuery()
  * @method static Builder|Collection newQuery()
@@ -38,6 +37,10 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Collection whereTitle($value)
  * @method static Builder|Collection whereUpdatedAt($value)
  * @mixin Eloquent
+ * @property string|null $slug
+ * @method static Builder|Collection findSimilarSlugs(string $attribute, array $config, string $slug)
+ * @method static Builder|Collection whereSlug($value)
+ * @method static Builder|Collection withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
  */
 class Collection extends Model
 {
