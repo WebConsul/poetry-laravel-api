@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Database\Factories\PoemFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -48,7 +49,8 @@ use Illuminate\Support\Carbon;
  */
 class Poem extends Model
 {
-    use HasFactory;
+    use HasFactory,
+        Sluggable;
 
     /**
      * @var array
@@ -59,6 +61,7 @@ class Poem extends Model
         'created',
         'translation_of',
         'poet_id',
+        'slug'
     ];
 
     /**
@@ -104,5 +107,17 @@ class Poem extends Model
     public function source(): BelongsTo
     {
         return $this->belongsTo(Poem::class, 'translation_of');
+    }
+
+    /**
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 }
