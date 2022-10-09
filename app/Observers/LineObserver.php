@@ -9,16 +9,16 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 class LineObserver
 {
     /**
-     * @param Line $line
+     * @param  Line  $line
      * @return void
      */
     public function created(Line $line): void
     {
         $slug = SlugService::createSlug(Poem::class, 'slug', $line->text);
 
-        if (!$line->poem->slug){
+        if (! $line->poem->slug) {
             $line->poem()->update([
-                'slug' => $slug
+                'slug' => $slug,
             ]);
         }
     }

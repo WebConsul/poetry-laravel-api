@@ -32,6 +32,7 @@ use Illuminate\Support\Carbon;
  * @property-read Poem|null $source
  * @property-read \Illuminate\Database\Eloquent\Collection|Poem[] $translations
  * @property-read int|null $translations_count
+ *
  * @method static PoemFactory factory(...$parameters)
  * @method static Builder|Poem newModelQuery()
  * @method static Builder|Poem newQuery()
@@ -45,7 +46,9 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Poem whereTranslationOf($value)
  * @method static Builder|Poem whereUpdatedAt($value)
  * @mixin Eloquent
+ *
  * @property string|null $slug
+ *
  * @method static Builder|Poem findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static Builder|Poem whereSlug($value)
  * @method static Builder|Poem withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
@@ -64,7 +67,7 @@ class Poem extends Model
         'created',
         'translation_of',
         'poet_id',
-        'slug'
+        'slug',
     ];
 
     /**
@@ -119,8 +122,8 @@ class Poem extends Model
     {
         return [
             'slug' => [
-                'source' => 'title'
-            ]
+                'source' => 'title',
+            ],
         ];
     }
 }
