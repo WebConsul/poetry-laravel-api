@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Database\Factories\CollectionFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -37,10 +38,17 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Collection whereTitle($value)
  * @method static Builder|Collection whereUpdatedAt($value)
  * @mixin Eloquent
+ *
+ * @property string|null $slug
+ *
+ * @method static Builder|Collection findSimilarSlugs(string $attribute, array $config, string $slug)
+ * @method static Builder|Collection whereSlug($value)
+ * @method static Builder|Collection withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
  */
 class Collection extends Model
 {
-    use HasFactory;
+    use HasFactory,
+        Sluggable;
 
     /**
      * @var array
@@ -50,6 +58,7 @@ class Collection extends Model
         'publisher',
         'location',
         'date',
+        'slug',
     ];
 
     /**
@@ -76,5 +85,17 @@ class Collection extends Model
             'collection_id',
             'poem_id'
         );
+    }
+
+    /**
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title',
+            ],
+        ];
     }
 }

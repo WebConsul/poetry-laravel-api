@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Database\Factories\PoemFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -45,10 +46,17 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Poem whereTranslationOf($value)
  * @method static Builder|Poem whereUpdatedAt($value)
  * @mixin Eloquent
+ *
+ * @property string|null $slug
+ *
+ * @method static Builder|Poem findSimilarSlugs(string $attribute, array $config, string $slug)
+ * @method static Builder|Poem whereSlug($value)
+ * @method static Builder|Poem withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
  */
 class Poem extends Model
 {
-    use HasFactory;
+    use HasFactory,
+        Sluggable;
 
     /**
      * @var array
@@ -59,6 +67,7 @@ class Poem extends Model
         'created',
         'translation_of',
         'poet_id',
+        'slug',
     ];
 
     /**
@@ -104,5 +113,17 @@ class Poem extends Model
     public function source(): BelongsTo
     {
         return $this->belongsTo(Poem::class, 'translation_of');
+    }
+
+    /**
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title',
+            ],
+        ];
     }
 }
