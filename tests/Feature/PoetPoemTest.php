@@ -6,6 +6,7 @@ use App\Models\Poet;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Tests\Feature\JsonStructure\PoemStructure;
+use Tests\Feature\JsonStructure\PoetStructure;
 use Tests\TestCase;
 
 class PoetPoemTest extends TestCase

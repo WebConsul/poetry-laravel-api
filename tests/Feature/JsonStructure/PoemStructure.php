@@ -12,13 +12,7 @@ class PoemStructure
             'slug',
             'language',
             'created',
-            'poet' => [
-                'id',
-                'slug',
-                'birth_date',
-                'death_date',
-                'portrait_url',
-            ],
+            'poet' => PoetStructure::getStructure(),
         ];
     }
 }
