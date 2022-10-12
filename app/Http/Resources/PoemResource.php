@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\PoetData;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PoemResource extends JsonResource
@@ -14,6 +15,13 @@ class PoemResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'language' => $this->language,
+            'title' => $this->title,
+            'created' => $this->created,
+            'slug' => $this->slug,
+
+            'poet' => new PoetResource($this->poet),
+        ];
     }
 }
