@@ -32,4 +32,3 @@ Route::controller(PoetController::class)->group(function () {
 Route::resource('poets.poems', PoetPoemController::class)
     ->scoped(['poet' => 'slug', 'poem' => 'slug'])
     ->only(['show']);
-

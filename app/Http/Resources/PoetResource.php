@@ -73,6 +73,12 @@ class PoetResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'slug' => $this->slug,
+            'birth_date' => $this->birth_date,
+            'death_date' => $this->birth_date,
+            'portrait_url' => $this->birth_date,
+        ];
     }
 }
