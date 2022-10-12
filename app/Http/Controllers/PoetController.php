@@ -40,7 +40,7 @@ class PoetController extends Controller
     }
 
     /**
-     * @param GetPoetAction $action
+     * @param  GetPoetAction  $action
      * @param $slug
      * @return PoetResource
      *

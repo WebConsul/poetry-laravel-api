@@ -80,7 +80,7 @@ class PoetTest extends TestCase
             ->hasPoetData(3)
             ->hasPoems(3)
             ->create([
-                'slug' => $slug
+                'slug' => $slug,
             ]);
 
         $poet->collections()->sync(Collection::factory()->create()->id);
@@ -102,6 +102,5 @@ class PoetTest extends TestCase
         $this->getJson(route('poet.show', ['slug' => $slug]))
             ->assertHeader('content-type', 'application/json')
             ->assertNotFound();
-
     }
 }

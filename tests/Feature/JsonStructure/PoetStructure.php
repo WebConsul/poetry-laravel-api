@@ -53,8 +53,8 @@ class PoetStructure
                     'language',
                     'title',
                     'created',
-                    'slug'
-                ]
+                    'slug',
+                ],
             ],
             'collections' => [
                 '*' => [
