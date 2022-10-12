@@ -24,3 +24,5 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('/poets', [PoetController::class, 'getPoets']);
+
+Route::get('poet/{slug}', [PoetController::class, 'show'])->name('poet.show');

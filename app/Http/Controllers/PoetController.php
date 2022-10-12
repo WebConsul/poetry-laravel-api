@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Poet\GetPoetAction;
 use App\Http\Requests\PoetRequest;
+use App\Http\Resources\PoetResource;
 use App\Models\Poet;
 use Illuminate\Http\JsonResponse;
 use OpenApi\Annotations as OA;
@@ -36,5 +38,15 @@ class PoetController extends Controller
             ->paginate($perPage);
 
         return response()->json($poets);
+    }
+
+    /**
+     * @param GetPoetAction $action
+     * @param $slug
+     * @return PoetResource
+     */
+    public function show(GetPoetAction $action, $slug): PoetResource
+    {
+        return new PoetResource($action->execute($slug));
     }
 }
