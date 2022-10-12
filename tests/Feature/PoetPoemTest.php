@@ -6,7 +6,6 @@ use App\Models\Poet;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Tests\Feature\JsonStructure\PoemStructure;
-use Tests\Feature\JsonStructure\PoetStructure;
 use Tests\TestCase;
 
 class PoetPoemTest extends TestCase
@@ -44,7 +43,6 @@ class PoetPoemTest extends TestCase
                 'slug' => $poetSlug,
             ]);
 
-
         $this->getJson(route('poets.poems.show', ['not-correct-slug', $poemSlug]))
             ->assertHeader('content-type', 'application/json')
             ->assertNotFound();
@@ -61,7 +59,6 @@ class PoetPoemTest extends TestCase
             ->create([
                 'slug' => $poetSlug,
             ]);
-
 
         $this->getJson(route('poets.poems.show', [$poetSlug, 'not-correct-slug']))
             ->assertHeader('content-type', 'application/json')
