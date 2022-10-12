@@ -79,6 +79,8 @@ class PoetResource extends JsonResource
             'birth_date' => $this->birth_date,
             'death_date' => $this->birth_date,
             'portrait_url' => $this->birth_date,
+
+            'poet_data' => PoetDataResource::collection($this->poetData),
         ];
     }
 }
