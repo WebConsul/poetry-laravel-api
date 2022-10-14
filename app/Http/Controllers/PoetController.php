@@ -7,6 +7,7 @@ use App\Http\Requests\PoetRequest;
 use App\Http\Resources\PoetResource;
 use App\Models\Poet;
 use Illuminate\Http\JsonResponse;
+use OpenApi\Annotations as OA;
 
 class PoetController extends Controller
 {
@@ -45,9 +46,9 @@ class PoetController extends Controller
      * @return PoetResource
      *
      * @OA\Get(
-     *      path="/api/poet/{slug}",
+     *      path="/api/poets/{slug}",
      *      operationId="getPoetBySlug",
-     *      tags={"poet"},
+     *      tags={"poets"},
      *      summary="Get poet information",
      *      description="Returns poet data",
      *      @OA\Parameter(

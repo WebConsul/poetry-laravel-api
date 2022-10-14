@@ -48,10 +48,10 @@
                 }
             }
         },
-        "/api/poet/{slug}": {
+        "/api/poets/{slug}": {
             "get": {
                 "tags": [
-                    "poet"
+                    "poets"
                 ],
                 "summary": "Get poet information",
                 "description": "Returns poet data",
