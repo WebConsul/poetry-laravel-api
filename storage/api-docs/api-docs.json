@@ -48,6 +48,42 @@
                 }
             }
         },
+        "/api/poets/{slug}": {
+            "get": {
+                "tags": [
+                    "poets"
+                ],
+                "summary": "Get poet information",
+                "description": "Returns poet data",
+                "operationId": "getPoetBySlug",
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "description": "Poet slug",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PoetResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
         "/user": {
             "post": {
                 "tags": [
@@ -65,6 +101,136 @@
                         "description": "successful operation"
                     }
                 }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "PoetResource": {
+                "title": "PoetResource",
+                "description": "Poet resource",
+                "type": "object",
+                "allOf": [
+                    {
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "birth_date": {
+                                "type": "string"
+                            },
+                            "death_date": {
+                                "type": "string"
+                            },
+                            "portrait_url": {
+                                "type": "string"
+                            },
+                            "created_at": {
+                                "type": "string"
+                            },
+                            "updated_at": {
+                                "type": "string"
+                            },
+                            "slug": {
+                                "type": "string"
+                            },
+                            "poet_data": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "poet_id": {
+                                            "type": "integer"
+                                        },
+                                        "language": {
+                                            "type": "string"
+                                        },
+                                        "first_name": {
+                                            "type": "string"
+                                        },
+                                        "last_name": {
+                                            "type": "string"
+                                        },
+                                        "description": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "poems": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "poet_id": {
+                                            "type": "integer"
+                                        },
+                                        "translation_of": {
+                                            "type": "string"
+                                        },
+                                        "language": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "created": {
+                                            "type": "string"
+                                        },
+                                        "created_at": {
+                                            "type": "string"
+                                        },
+                                        "updated_at": {
+                                            "type": "string"
+                                        },
+                                        "slug": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "collections": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "title": {
+                                            "type": "integer"
+                                        },
+                                        "publisher": {
+                                            "type": "string"
+                                        },
+                                        "location": {
+                                            "type": "string"
+                                        },
+                                        "date": {
+                                            "type": "string"
+                                        },
+                                        "created_at": {
+                                            "type": "string"
+                                        },
+                                        "updated_at": {
+                                            "type": "string"
+                                        },
+                                        "slug": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
             }
         }
     }

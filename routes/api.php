@@ -23,4 +23,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user/me', [UserController::class, 'me']);
 });
 
-Route::get('/poets', [PoetController::class, 'getPoets']);
+Route::controller(PoetController::class)->group(function () {
+    Route::get('/poets/{slug}', 'show')->name('poet.show');
+    Route::get('/poets', 'getPoets');
+});
