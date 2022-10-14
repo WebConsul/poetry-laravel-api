@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\PoemResource;
 use App\Models\Poem;
 use App\Models\Poet;
+use OpenApi\Annotations as OA;
 
 /**
  * @OA\Get(

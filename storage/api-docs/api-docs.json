@@ -84,6 +84,44 @@
                 }
             }
         },
+        "/api/poets/{poet_slug}/poems/{poem_slug}": {
+            "get": {
+                "tags": [
+                    "poems"
+                ],
+                "summary": "Get poem from poet",
+                "description": "Getting poem from a poet.",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "poet_slug",
+                        "in": "path",
+                        "description": "Poet slug",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "poem_slug",
+                        "in": "path",
+                        "description": "Poem slug",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
         "/user": {
             "post": {
                 "tags": [
