@@ -28,10 +28,10 @@ class PoetTest extends TestCase
             ->assertHeader('content-type', 'application/json')
             ->assertStatus(200)
             ->assertJsonStructure(PaginatedPoetList::getStructure())
-            ->assertJson(fn(AssertableJson $json) => $json
+            ->assertJson(fn (AssertableJson $json) => $json
                 ->whereAllType(array_merge(PaginatedList::getTypes(), PaginatedPoetList::getTypes()))
             )
-            ->assertJsonPath('per_page', (int)config('pagination.per_page.poets'));
+            ->assertJsonPath('per_page', (int) config('pagination.per_page.poets'));
     }
 
     public function test_get_all_poets_with_per_page_equals_3(): void
@@ -44,7 +44,7 @@ class PoetTest extends TestCase
             ->assertHeader('content-type', 'application/json')
             ->assertStatus(200)
             ->assertJsonStructure(PaginatedPoetList::getStructure())
-            ->assertJson(fn(AssertableJson $json) => $json
+            ->assertJson(fn (AssertableJson $json) => $json
                 ->whereAllType(array_merge(PaginatedList::getTypes(), PaginatedPoetList::getTypes()))
             )
             ->assertJsonPath('per_page', 3);
@@ -59,7 +59,7 @@ class PoetTest extends TestCase
         $response
             ->assertHeader('content-type', 'application/json')
             ->assertStatus(422)
-            ->assertJson(fn(AssertableJson $json) => $json
+            ->assertJson(fn (AssertableJson $json) => $json
                 ->has('message')
                 ->has('errors')
                 ->has('errors.per_page')
