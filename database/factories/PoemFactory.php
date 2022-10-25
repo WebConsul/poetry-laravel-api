@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Poem;
 use App\Models\Poet;
 use Database\Factories\Helpers\FactoryHelper;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -31,7 +32,7 @@ class PoemFactory extends Factory
 
         return [
             'language' => $this->faker->languageCode(),
-            'title' => $this->faker->boolean(50) ? null : $this->faker->sentence(3),
+            'title' => $this->faker->boolean() ? null : $this->faker->sentence(3),
             'created' => $this->faker->date(Arr::random($this->dateFormats)),
             'translation_of' => null,
             'poet_id' => $poetId,

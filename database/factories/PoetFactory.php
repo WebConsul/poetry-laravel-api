@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Poet;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Poet>
+ * @extends Factory<Poet>
  */
 class PoetFactory extends Factory
 {
@@ -14,7 +15,7 @@ class PoetFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'birth_date' => $this->faker->dateTimeBetween('-100 years', '-80 years'),

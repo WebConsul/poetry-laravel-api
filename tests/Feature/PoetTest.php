@@ -12,6 +12,7 @@ use Tests\Feature\JsonStructure\PaginatedList;
 use Tests\Feature\JsonStructure\PaginatedPoetList;
 use Tests\Feature\JsonStructure\PoetStructure;
 use Tests\TestCase;
+use Throwable;
 
 class PoetTest extends TestCase
 {
@@ -30,7 +31,7 @@ class PoetTest extends TestCase
             ->assertJson(fn (AssertableJson $json) => $json
                 ->whereAllType(array_merge(PaginatedList::getTypes(), PaginatedPoetList::getTypes()))
             )
-            ->assertJsonPath('per_page', intval(config('pagination.per_page.poets')));
+            ->assertJsonPath('per_page', (int) config('pagination.per_page.poets'));
     }
 
     public function test_get_all_poets_with_per_page_equals_3(): void
@@ -73,6 +74,9 @@ class PoetTest extends TestCase
             );
     }
 
+    /**
+     * @throws Throwable
+     */
     public function test_get_poet_by_slug_with_correct_slug(): void
     {
         $slug = Str::slug('Poet firstname lastname');
@@ -86,6 +90,7 @@ class PoetTest extends TestCase
         $poet->collections()->sync(Collection::factory()->create()->id);
 
         $response = $this->getJson(route('poet.show', ['slug' => $slug]));
+
         $response->assertHeader('content-type', 'application/json')
             ->assertStatus(200)
             ->assertJsonStructure(['data' => PoetStructure::getPoetStructureWithPoemsAndCollections()])
