@@ -10,7 +10,7 @@ class PoemResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  Request  $request
+     * @param Request $request
      * @return array
      */
     public function toArray($request): array
@@ -22,7 +22,7 @@ class PoemResource extends JsonResource
             'language' => $this->language,
             'created' => $this->created,
 
-            'poet' => new PoetResource($this->poet),
+            'poet' => $this->poet,
         ];
     }
 }

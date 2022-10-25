@@ -7,9 +7,13 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Tests\Feature\JsonStructure\PoemStructure;
 use Tests\TestCase;
+use Throwable;
 
 class PoetPoemTest extends TestCase
 {
+    /**
+     * @throws Throwable
+     */
     public function test_get_poem_by_correct_slugs(): void
     {
         $poetSlug = Str::slug('Poet slug');

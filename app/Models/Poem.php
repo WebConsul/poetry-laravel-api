@@ -104,7 +104,7 @@ class Poem extends Model
      */
     public function translations(): HasMany
     {
-        return $this->hasMany(Poem::class, 'translation_of');
+        return $this->hasMany(__CLASS__, 'translation_of');
     }
 
     /**
@@ -112,7 +112,7 @@ class Poem extends Model
      */
     public function source(): BelongsTo
     {
-        return $this->belongsTo(Poem::class, 'translation_of');
+        return $this->belongsTo(__CLASS__, 'translation_of');
     }
 
     /**

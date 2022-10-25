@@ -70,7 +70,7 @@ class PoetResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  Request  $request
+     * @param Request $request
      * @return array
      */
     public function toArray($request): array
@@ -82,7 +82,9 @@ class PoetResource extends JsonResource
             'death_date' => $this->birth_date,
             'portrait_url' => $this->birth_date,
 
-            'poet_data' => PoetDataResource::collection($this->poetData),
+            'poet_data' => $this->poetData,
+            'poems' => $this->poems,
+            'collections' => $this->collections,
         ];
     }
 }
