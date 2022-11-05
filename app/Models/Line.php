@@ -20,7 +20,6 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read Poem $poem
- *
  * @method static LineFactory factory(...$parameters)
  * @method static Builder|Line newModelQuery()
  * @method static Builder|Line newQuery()

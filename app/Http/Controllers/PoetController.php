@@ -41,7 +41,7 @@ class PoetController extends Controller
     }
 
     /**
-     * @param  GetPoetAction  $action
+     * @param GetPoetAction $action
      * @param $slug
      * @return PoetResource
      *
@@ -74,5 +74,10 @@ class PoetController extends Controller
     public function show(GetPoetAction $action, $slug): PoetResource
     {
         return new PoetResource($action->execute($slug));
+    }
+
+    public function create()
+    {
+
     }
 }
