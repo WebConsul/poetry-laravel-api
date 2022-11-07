@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 services:
     nginx:
         build:
@@ -41,3 +41,7 @@ services:
             - "5432:5432"
 volumes:
     db:
+networks:
+    default:
+        name: poetry
+        external: true
