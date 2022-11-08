@@ -7,6 +7,9 @@ up: docker-up
 down: docker-down
 restart: down up
 
+docker-create-network:
+	docker network create poetry
+
 docker-up:
 	docker-compose up -d
 
