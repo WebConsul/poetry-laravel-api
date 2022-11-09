@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Poet\CreatePoetAction;
 use App\Actions\Poet\GetPoetAction;
+use App\Http\Requests\CreatePoetRequest;
 use App\Http\Requests\PoetRequest;
 use App\Http\Resources\PoetResource;
 use App\Models\Poet;
@@ -41,7 +43,7 @@ class PoetController extends Controller
     }
 
     /**
-     * @param  GetPoetAction  $action
+     * @param GetPoetAction $action
      * @param $slug
      * @return PoetResource
      *
@@ -74,5 +76,16 @@ class PoetController extends Controller
     public function show(GetPoetAction $action, $slug): PoetResource
     {
         return new PoetResource($action->execute($slug));
+    }
+
+    public function create(CreatePoetRequest $request)
+    {
+        $createPoetAction = app(CreatePoetAction::class, [
+            "lang" => $request->input('lang'),
+            "full_name" => $request->input('full_name')
+        ]);
+
+        $createPoetAction->execute();
+        return response();
     }
 }

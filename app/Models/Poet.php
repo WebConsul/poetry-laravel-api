@@ -27,7 +27,6 @@ use Illuminate\Support\Carbon;
  * @property-read int|null $poems_count
  * @property-read \Illuminate\Database\Eloquent\Collection|PoetData[] $poetData
  * @property-read int|null $poet_data_count
- *
  * @method static PoetFactory factory(...$parameters)
  * @method static Builder|Poet newModelQuery()
  * @method static Builder|Poet newQuery()
@@ -39,9 +38,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Poet wherePortraitUrl($value)
  * @method static Builder|Poet whereUpdatedAt($value)
  * @mixin Eloquent
- *
  * @property string|null $slug
- *
  * @method static Builder|Poet findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static Builder|Poet whereSlug($value)
  * @method static Builder|Poet withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)

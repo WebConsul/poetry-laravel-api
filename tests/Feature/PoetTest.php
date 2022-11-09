@@ -108,4 +108,10 @@ class PoetTest extends TestCase
             ->assertHeader('content-type', 'application/json')
             ->assertNotFound();
     }
+
+    public function test_create_poet_bad_validate(): void
+    {
+        $this->postJson(route('poet.create'))
+            ->assertUnprocessable();
+    }
 }

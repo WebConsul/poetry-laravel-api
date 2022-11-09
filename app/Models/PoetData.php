@@ -19,7 +19,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $last_name
  * @property string|null $description
  * @property-read Poet $poet
- *
  * @method static PoetDataFactory factory(...$parameters)
  * @method static Builder|PoetData newModelQuery()
  * @method static Builder|PoetData newQuery()
